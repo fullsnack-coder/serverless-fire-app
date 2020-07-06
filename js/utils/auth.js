@@ -64,4 +64,13 @@ async function logout() {
   return await auth.signOut();
 }
 
-auth.onAuthStateChanged(setupUI);
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    db.collection("quotes").onSnapshot((snapshot) => {
+      setupQuotes(snapshot.docs);
+      setupUI(user);
+    });
+  } else {
+    setupUI();
+  }
+});

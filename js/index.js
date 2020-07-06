@@ -26,3 +26,16 @@ async function setupUI(user) {
     });
   }
 }
+
+async function setupQuotes(quotes) {
+  let html = ``;
+  quotes.forEach((doc) => {
+    const quote = doc.data();
+    const li = `
+    <li>
+    <div class="collapsible-header grey lighten-4">${quote.author}</div>
+              <div class="collapsible-body white lighten-4">${quote.message}</div> </li>`;
+    html += li;
+  });
+  quotesUI.innerHTML = html;
+}
