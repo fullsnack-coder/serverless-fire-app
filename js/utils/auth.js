@@ -63,3 +63,5 @@ async function login(email, password) {
 async function logout() {
   return await auth.signOut();
 }
+
+auth.onAuthStateChanged(setupUI);
