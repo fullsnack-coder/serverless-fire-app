@@ -61,7 +61,8 @@ async function login(email, password) {
 }
 
 async function logout() {
-  return await auth.signOut();
+  await auth.signOut();
+  window.location.reload();
 }
 
 auth.onAuthStateChanged((user) => {

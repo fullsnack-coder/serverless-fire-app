@@ -118,6 +118,28 @@
       <ul class="collapsible z-depth-0 quotes" style="border: none;"></ul>
     </div>
 
+    <div id="modal-create" class="modal">
+      <div class="modal-content">
+        <h4>Create Quote</h4>
+        <br />
+        <form id="create-form">
+          <div class="input-field">
+            <input type="text" id="author" required />
+            <label for="author">Author</label>
+          </div>
+          <div class="input-field">
+            <textarea
+              id="message"
+              class="materialize-textarea"
+              required
+            ></textarea>
+            <label for="content">Message Content</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Create</button>
+        </form>
+      </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
@@ -129,6 +151,7 @@
     <script src="./js/config/materialize.config.js"></script>
     <script src="./js/utils/definitions.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/quote.js"></script>
     <script src="./js/utils/auth.js"></script>
   </body>
 </html>
