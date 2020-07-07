@@ -2,6 +2,11 @@
 
 async function setupUI(user) {
   if (user) {
+    if (user.admin) {
+      adminItems.forEach((i) => {
+        i.style.display = "block";
+      });
+    }
     const userCollection = (
       await db.collection("users").doc(user.uid).get()
     ).data();
@@ -17,12 +22,15 @@ async function setupUI(user) {
       button.style.display = "none";
     });
   } else {
-    console.log(0);
+    quotesUI.innerHTML += `<h2>Login to enjoy</h2>`;
     loggedInMenu.forEach((item) => {
       item.style.display = "none";
     });
     loggedOutMenu.forEach((button) => {
       button.style.display = "block";
+    });
+    adminItems.forEach((item) => {
+      item.style.display = "none";
     });
   }
 }

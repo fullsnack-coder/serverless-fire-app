@@ -4,7 +4,6 @@ signupForm.addEventListener("submit", async (evt) => {
   try {
     const { email, password } = getSignupFormInfo();
     await login(email, password);
-    console.log("user created...");
   } catch (error) {
     console.log({ error });
   } finally {
@@ -19,7 +18,6 @@ loginForm.addEventListener("submit", async (evt) => {
   try {
     const { email, password } = getLoginFormInfo();
     await login(email, password);
-    console.log("user logged...");
   } catch (error) {
     console.log({ error });
   } finally {
@@ -31,7 +29,6 @@ loginForm.addEventListener("submit", async (evt) => {
 logoutButton.addEventListener("click", async (evt) => {
   evt.preventDefault();
   await logout();
-  console.log("logout...");
 });
 
 function getSignupFormInfo() {
@@ -65,13 +62,16 @@ async function logout() {
   window.location.reload();
 }
 
-auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged(async (user) => {
   if (user) {
+    const idTokenResult = await user.getIdTokenResult();
+    user.admin = idTokenResult.claims.admin;
     db.collection("quotes").onSnapshot((snapshot) => {
       setupQuotes(snapshot.docs);
       setupUI(user);
     });
   } else {
+    setupQuotes([]);
     setupUI();
   }
 });
